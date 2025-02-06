@@ -11,6 +11,12 @@ blog.get("/", (req, res) => {
     res.send("Homepage");
 })
 
+// Importing main posts route
+const postsRouter = require("./routers/posts");
+// Defined main posts route
+blog.use("/posts", postsRouter);
+
+
 // Starting server on specified port
 blog.listen(port, () => {
     console.log(`Listening on port ${port}`)
