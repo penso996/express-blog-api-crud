@@ -52,6 +52,9 @@ function destroy(req, res) {
 
     // Affirmative status
     res.sendStatus(204);
+
+    // Console log
+    console.log(postsData);
 }
 
 // Export controller module
