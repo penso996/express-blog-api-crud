@@ -12,7 +12,7 @@ blog.get("/", (req, res) => {
 })
 
 // Importing main posts route
-const postsRouter = require("./routers/posts");
+const postsRouter = require("./routers/posts.js");
 // Defined main posts route
 blog.use("/posts", postsRouter);
 

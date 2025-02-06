@@ -9,72 +9,50 @@ function index(req, res) {
 
 // Show function
 function show(req, res) {
-    // res.send('Dettagli della pizza ' + req.params.id);
+    const id = parseInt(req.params.id);
+    const post = postsData.find(post => post.id === id);
 
-    // recuperiamo l'id dall' URL e trasformiamolo in numero
-    const id = parseInt(req.params.id)
-
-    // cerchiamo il pizza tramite id
-    const pizza = menu.find(pizza => pizza.id === id);
-
-    // Facciamo il controllo
-    if (!pizza) {
-
-        // ritorno lo stato di errore 404, non trovato
+    // Error handling
+    if (!post) {
+        // Error 404
         res.status(404);
-
-        // ritorno un messaggio di errore (formato json)
         return res.json({
-            error: "Not Found",
-            message: "Pizza non trovata"
+            error: "Not found",
+            message: "Post not found"
         })
     }
 
-    // Restituiamolo sotto forma di JSON   
-    res.json(pizza);
+    // OR return post in json format
+    res.json(post);
 }
 
-function store(req, res) {
-    // copiamo la logica della store
-}
+// Store function
+//
 
-function update(req, res) {
-    // copiamo la logica dell'update
-}
+// Update function
+//
 
+// Destroy function
 function destroy(req, res) {
-    // res.send('Eliminazione della pizza ' + req.params.id);
+    const id = parseInt(req.params.id);
+    const post = postsData.find(post => post.id === id);
 
-    // recuperiamo l'id dall' URL e trasformiamolo in numero
-    const id = parseInt(req.params.id)
-
-    // cerchiamo il pizza tramite id
-    const pizza = menu.find(pizza => pizza.id === id);
-
-    // Facciamo il controllo
-    if (!pizza) {
-
-        // ritorno lo stato di errore 404, non trovato
+    // Error handling
+    if (!post) {
+        // Error 404
         res.status(404);
-
-        // ritorno un messaggio di errore (formato json)
         return res.json({
-            error: "Not Found",
-            message: "Pizza non trovata"
+            error: "Not found",
+            message: "Post not found"
         })
     }
 
-    // cancello la pizza trovata
-    menu.splice(menu.indexOf(pizza), 1);
+    // OR delete post
+    postsData.splice(postsData.indexOf(post), 1);
 
-    // log di riscontro di check su aggiornamento dati
-    console.log(menu);
-
-
-
-    // ritorno la risposta positiva di avvenuta cancellazione
+    // Affirmative status
     res.sendStatus(204);
 }
 
-// esportiamo tutto
-module.exports = { index, show, store, update, destroy }
+// Export controller module
+module.exports = { index, show, destroy }
