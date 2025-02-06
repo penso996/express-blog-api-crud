@@ -6,10 +6,10 @@ const router = express.Router();
 const postsController = require("../controllers/postsController");
 
 // POSTS CRUD
-// index
+// index (imported)
 router.get("/", postsController.index);
 
-// show
+// show (imported)
 router.get("/:id", postsController.show);
 
 // store
@@ -27,7 +27,7 @@ router.patch("/:id", function (req, res) {
     res.send("Modify post " + req.params.id);
 });
 
-// destroy
+// destroy (imported)
 router.delete("/:id", postsController.destroy);
 
 
