@@ -62,11 +62,12 @@ function store(req, res) {
     // Create new post object
     const newPost = {
         id: newPostId,
-        name: req.body.title,
         content: req.body.content,
+        title: req.body.title,
         image: req.body.image,
         tags: req.body.tags
     }
+
     // Add the new post in data_post
     postsData.push(newPost);
 
@@ -79,7 +80,32 @@ function store(req, res) {
 
 // Update function
 function update(req, res) {
-    res.send("Totally modify post " + req.params.id);
+
+    // Filter by id
+    const id = parseInt(req.params.id);
+    const post = postsData.find(post => post.id === id);
+
+    // If no element found by id
+    if (!post) {
+        // Error 404
+        res.status(404);
+        return res.json({
+            error: "Not found",
+            message: "Post not found"
+        });
+    }
+
+    // Modify whole post
+    post.content = req.body.content;
+    post.title = req.body.title;
+    post.image = req.body.image;
+    post.tags = req.body.tags;
+
+    // Console log to check new data_post
+    console.log(postsData);
+
+    // Send new modified post json
+    res.json(postsData[id - 1]);
 };
 
 // Modify
