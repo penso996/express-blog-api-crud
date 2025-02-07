@@ -62,8 +62,8 @@ function store(req, res) {
     // Create new post object
     const newPost = {
         id: newPostId,
-        content: req.body.content,
         title: req.body.title,
+        content: req.body.content,
         image: req.body.image,
         tags: req.body.tags
     }
@@ -96,8 +96,8 @@ function update(req, res) {
     }
 
     // Modify whole post
-    post.content = req.body.content;
     post.title = req.body.title;
+    post.content = req.body.content;
     post.image = req.body.image;
     post.tags = req.body.tags;
 
@@ -110,7 +110,31 @@ function update(req, res) {
 
 // Modify
 function modify(req, res) {
-    res.send("Partially modify post " + req.params.id);
+    // Filter by id
+    const id = parseInt(req.params.id);
+    const post = postsData.find(post => post.id === id);
+
+    // If no element found by id
+    if (!post) {
+        // Error 404
+        res.status(404);
+        return res.json({
+            error: "Not found",
+            message: "Post not found"
+        });
+    }
+
+    // Modify only post data fields given
+    req.body.title ? post.title = req.body.title : post.title = post.title;
+    req.body.content ? post.content = req.body.content : post.content = post.content;
+    req.body.image ? post.image = req.body.image : post.image = post.image;
+    req.body.tag ? post.tag = req.body.title : post.title = post.title;
+
+    // Console log to check new data_post
+    console.log(postsData);
+
+    // Send new modified post json
+    res.json(postsData[id - 1]);
 };
 
 // Destroy function
