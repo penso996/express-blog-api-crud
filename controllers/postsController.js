@@ -51,10 +51,19 @@ function show(req, res) {
 };
 
 // Store function
-//
+function store(req, res) {
+    res.send("Create new posts");
+};
 
 // Update function
-//
+function update(req, res) {
+    res.send("Totally modify post " + req.params.id);
+};
+
+// Modify
+function modify(req, res) {
+    res.send("Partially modify post " + req.params.id);
+};
 
 // Destroy function
 function destroy(req, res) {
@@ -83,4 +92,4 @@ function destroy(req, res) {
 
 
 // Export controller module
-module.exports = { index, show, destroy }
+module.exports = { index, show, store, update, modify, destroy }

@@ -12,20 +12,14 @@ postsRouter.get("/", postsController.index);
 // show (imported)
 postsRouter.get("/:id", postsController.show);
 
-// store
-postsRouter.post("/", function (req, res) {
-    res.send("Create new posts");
-});
+// store (imported)
+postsRouter.post("/", postsController.store);
 
-// update
-postsRouter.put("/:id", function (req, res) {
-    res.send("Totally modify post " + req.params.id);
-});
+// update (imported)
+postsRouter.put("/:id", postsController.update);
 
-// modify
-postsRouter.patch("/:id", function (req, res) {
-    res.send("Partially modify post " + req.params.id);
-});
+// modify (imported)
+postsRouter.patch("/:id", postsController.modify);
 
 // destroy (imported)
 postsRouter.delete("/:id", postsController.destroy);
