@@ -77,5 +77,6 @@ function destroy(req, res) {
     console.log(postsData);
 }
 
+
 // Export controller module
 module.exports = { index, show, destroy }

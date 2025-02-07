@@ -9,7 +9,7 @@ app.use(express.static("public"));
 // Defined home route
 app.get("/", (req, res) => {
     res.send("Homepage");
-})
+});
 
 // Importing main posts route
 const postsRouter = require("./routers/postsRouters.js");
@@ -20,4 +20,4 @@ app.use("/posts", postsRouter);
 // Starting server on specified port
 app.listen(port, () => {
     console.log(`Listening on port ${port}`)
-})
+});
