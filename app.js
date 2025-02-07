@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-// Defined static folder
+// Defined middleware to serve static files from the "public" folder
 app.use(express.static("public"));
 
 // Defined home route
