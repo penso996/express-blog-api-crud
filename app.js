@@ -6,6 +6,9 @@ const port = 3000;
 // Defined middleware to serve static files from the "public" folder
 app.use(express.static("public"));
 
+// Defined middleware to parse JSON request bodies
+app.use(express.json());
+
 // Defined home route
 app.get("/", (req, res) => {
     res.send("Homepage");

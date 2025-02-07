@@ -52,7 +52,28 @@ function show(req, res) {
 
 // Store function
 function store(req, res) {
-    res.send("Create new posts");
+
+    // Retrieve last post object
+    const lastPost = postsData[postsData.length - 1];
+    // Retrive last post id
+    const idLastPost = lastPost.id;
+    // Create new post id
+    const newPostId = idLastPost + 1;
+    // Create new post object
+    const newPost = {
+        id: newPostId,
+        name: req.body.title,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags
+    }
+    // Add the new post in data_post
+    postsData.push(newPost);
+    // controlliamo
+    console.log(menu);
+    // Restituiamo lo status corretto e la pizza appena creata
+    res.status(201);
+    res.json(newPizza);
 };
 
 // Update function
