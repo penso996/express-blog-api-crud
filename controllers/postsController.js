@@ -5,27 +5,29 @@ const postsData = require("../data/data_posts");
 // Index function
 function index(req, res) {
 
-    // Filter
+    // Filter by query ("tag")
     const tag = req.query.tag;
 
     if (tag) {
         const filteredPosts = postsData.filter(post => post.tags.includes(tag));
 
+        // If list result empty
         if (filteredPosts.length === 0) {
             // Error 404
             res.status(404);
             return res.json({
                 error: "Not found",
                 message: "Post not found"
-            })
+            });
         }
 
+        // Or return filtered data
         return res.json(filteredPosts);
     }
 
     // OR show everything
     return res.json(postsData);
-}
+};
 
 // Show function
 function show(req, res) {
