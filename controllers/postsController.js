@@ -69,11 +69,12 @@ function store(req, res) {
     }
     // Add the new post in data_post
     postsData.push(newPost);
-    // controlliamo
-    console.log(menu);
-    // Restituiamo lo status corretto e la pizza appena creata
+
+    // Console log to check new data_post
+    console.log(postsData);
+    // Send new status and new post json
     res.status(201);
-    res.json(newPizza);
+    res.json(newPost);
 };
 
 // Update function
