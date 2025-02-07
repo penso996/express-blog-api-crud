@@ -31,22 +31,24 @@ function index(req, res) {
 
 // Show function
 function show(req, res) {
+
+    // Filter by id
     const id = parseInt(req.params.id);
     const post = postsData.find(post => post.id === id);
 
-    // Error handling
+    // If no element found by id
     if (!post) {
         // Error 404
         res.status(404);
         return res.json({
             error: "Not found",
             message: "Post not found"
-        })
+        });
     }
 
     // OR return post in json format
     res.json(post);
-}
+};
 
 // Store function
 //
@@ -56,28 +58,28 @@ function show(req, res) {
 
 // Destroy function
 function destroy(req, res) {
+
+    // Destroy by id
     const id = parseInt(req.params.id);
     const post = postsData.find(post => post.id === id);
 
-    // Error handling
+    // If no element found by id
     if (!post) {
         // Error 404
         res.status(404);
         return res.json({
             error: "Not found",
             message: "Post not found"
-        })
+        });
     }
 
     // OR delete post
     postsData.splice(postsData.indexOf(post), 1);
-
-    // Affirmative status
+    // Send affirmative status
     res.sendStatus(204);
-
-    // Console log
+    // Console log with updated data
     console.log(postsData);
-}
+};
 
 
 // Export controller module
