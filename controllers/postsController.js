@@ -4,28 +4,6 @@ const postsData = require("../data/data_posts");
 // Function for posts routing behaviour
 // Index function
 function index(req, res) {
-
-    // Filter by query ("tag")
-    const tag = req.query.tag;
-
-    if (tag) {
-        const filteredPosts = postsData.filter(post => post.tags.includes(tag));
-
-        // If list result empty
-        if (filteredPosts.length === 0) {
-            // Error 404
-            res.status(404);
-            return res.json({
-                error: "Not found",
-                message: "Post not found"
-            });
-        }
-
-        // Or return filtered data
-        return res.json(filteredPosts);
-    }
-
-    // OR show everything
     return res.json(postsData);
 };
 
