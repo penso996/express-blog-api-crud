@@ -56,7 +56,7 @@ function store(req, res) {
         tags: req.body.tags
     };
 
-    // Add the new post object to the postsData array
+    // Add the new post object to postsData array
     postsData.push(newPost);
 
     // Send the response with a 201 status indicating that the post was created, and return the new post in JSON format
