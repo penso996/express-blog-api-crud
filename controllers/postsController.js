@@ -1,11 +1,11 @@
 // Importing data
 const postsData = require("../data/data_posts");
 
-// Function for posts routing behaviour
+// Function for posts (objects) routing behaviour
 // Index function
 function index(_, res) {    // No req needed
 
-    // If no element in postsData
+    // If no object in postsData
     if (postsData.length === 0) {
 
         // Error 404
@@ -15,7 +15,7 @@ function index(_, res) {    // No req needed
         });
     }
 
-    // OR return all elements in postsData (in JSON)
+    // OR return all objects in postsData (in JSON)
     return res.json(postsData);
 };
 
@@ -36,20 +36,20 @@ function show(req, res) {
         });
     }
 
-    // OR return single element found in that position in postsData (in JSON)
+    // OR return object found in that position in postsData (in JSON)
     res.json(post);
 };
 
 // Store function
 function store(req, res) {
 
-    // Retrieve last ID in postsData
+    // Retrieve last ID key in postsData
     const lastPostId = postsData[postsData.length - 1];
     // Add 1+ ID OR if postsData is empty set undefined in 1
     const newPostId = lastPostId ? lastPostId.id + 1 : 1;
 
-    // Create a new post object using data from the request body
-    // (!!!NO ERROR IF MISSSING DATA!!!)
+    // Create new object using data from the request body
+    // (!!!NO ERROR IF MISSING DATA!!!)
     const newPost = {
         id: newPostId,
         title: req.body.title,
@@ -58,10 +58,10 @@ function store(req, res) {
         tags: req.body.tags
     };
 
-    // Add the new post object to postsData array
+    // Add new object to postsData
     postsData.push(newPost);
 
-    // Send 201 status and new post back (in JSON)
+    // Send 201 status and new object back (in JSON)
     res.status(201).json(newPost);
 
     // DEBUG: updated postsData
@@ -71,13 +71,13 @@ function store(req, res) {
 // Update function
 function update(req, res) {
 
-    // Retrieve the post ID from the request parameters and parse it as an integer
+    // Retrieve post ID from the request parameters
     const id = parseInt(req.params.id);
 
-    // Find the post in postsData by comparing IDs
+    // Find the post in postsData by ID
     const post = postsData.find(post => post.id === id);
 
-    // If no element found by id
+    // If no element in ID position
     if (!post) {
         // Error 404
         return res.status(404).json({
