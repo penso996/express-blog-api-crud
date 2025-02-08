@@ -13,10 +13,9 @@ function index(req, res) {
             error: "Not found",
             message: "Post not found"
         });
-
     }
 
-    // Return data if found
+    // OR return data if found
     return res.json(postsData);
 };
 
@@ -30,8 +29,7 @@ function show(req, res) {
     // If no element found by id
     if (!post) {
         // Error 404
-        res.status(404);
-        return res.json({
+        return res.status(404).json({
             error: "Not found",
             message: "Post not found"
         });
