@@ -3,9 +3,9 @@ const postsData = require("../data/data_posts");
 
 // Function for posts routing behaviour
 // Index function
-function index(_, res) {
+function index(_, res) {    // No req needed
 
-    // If no element found
+    // If no element in postsData
     if (postsData.length === 0) {
 
         // Error 404
@@ -15,7 +15,7 @@ function index(_, res) {
         });
     }
 
-    // OR return data if found
+    // OR return all elements in postsData (in JSON)
     return res.json(postsData);
 };
 
@@ -26,8 +26,9 @@ function show(req, res) {
     const id = parseInt(req.params.id);
     const post = postsData.find(post => post.id === id);
 
-    // If no element found by ID
+    // If no element in ID position
     if (!post) {
+
         // Error 404
         return res.status(404).json({
             error: "Not found",
@@ -35,19 +36,20 @@ function show(req, res) {
         });
     }
 
-    // OR return single post in json format
+    // OR return single element found in that position in postsData (in JSON)
     res.json(post);
 };
 
 // Store function
 function store(req, res) {
 
-    // Retrieve the last post object to determine the next available ID
+    // Retrieve last ID in postsData
     const lastPostId = postsData[postsData.length - 1];
-    // If there are posts, increment the last post's ID, otherwise set the ID to 1 (for the first post)
+    // Add 1+ ID OR if postsData is empty set undefined in 1
     const newPostId = lastPostId ? lastPostId.id + 1 : 1;
 
     // Create a new post object using data from the request body
+    // (!!!NO ERROR IF MISSSING DATA!!!)
     const newPost = {
         id: newPostId,
         title: req.body.title,
@@ -59,10 +61,10 @@ function store(req, res) {
     // Add the new post object to postsData array
     postsData.push(newPost);
 
-    // Send the response with a 201 status indicating that the post was created, and return the new post in JSON format
+    // Send 201 status and new post back (in JSON)
     res.status(201).json(newPost);
 
-    // Log the updated postsData array to the console for debugging purposes
+    // DEBUG: updated postsData
     console.log(postsData);
 };
 
