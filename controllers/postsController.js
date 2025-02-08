@@ -5,9 +5,8 @@ const postsData = require("../data/data_posts");
 // Index function
 function index(_, res) {    // No req needed
 
-    // If no object in postsData
+    // If postsData is empty
     if (postsData.length === 0) {
-
         // Error 404
         return res.status(404).json({
             error: "Not found",
@@ -22,13 +21,12 @@ function index(_, res) {    // No req needed
 // Show function
 function show(req, res) {
 
-    // Filter by ID
+    // Filter by ID key in postsData
     const id = parseInt(req.params.id);
     const post = postsData.find(post => post.id === id);
 
-    // If no element in ID position
+    // If no object in ID position in postsData
     if (!post) {
-
         // Error 404
         return res.status(404).json({
             error: "Not found",
@@ -45,7 +43,7 @@ function store(req, res) {
 
     // Retrieve last ID key in postsData
     const lastPostId = postsData[postsData.length - 1];
-    // Add 1+ ID OR if postsData is empty set undefined in 1
+    // Add 1+ ID OR if postsData is empty set undefined to 1
     const newPostId = lastPostId ? lastPostId.id + 1 : 1;
 
     // Create new object using data from the request body
