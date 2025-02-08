@@ -59,7 +59,7 @@ function store(req, res) {
     // Add new object to postsData
     postsData.push(newPost);
 
-    // Send 201 status and new object back (in JSON)
+    // Send 201 status and new object (in JSON)
     res.status(201).json(newPost);
 
     // DEBUG: updated postsData
@@ -69,13 +69,13 @@ function store(req, res) {
 // Update function
 function update(req, res) {
 
-    // Retrieve post ID from the request parameters
+    // Retrieve ID key in postsData from the request parameters
     const id = parseInt(req.params.id);
 
-    // Find the post in postsData by ID
+    // Find ID key in postsData
     const post = postsData.find(post => post.id === id);
 
-    // If no element in ID position
+    // If no object in ID position
     if (!post) {
         // Error 404
         return res.status(404).json({
@@ -84,26 +84,27 @@ function update(req, res) {
         });
     }
 
-    // If post is found, modify the post's properties with data from the request body
+    // If object is found, modify object's properties with data from the request body
     post.title = req.body.title;
     post.content = req.body.content;
     post.image = req.body.image;
     post.tags = req.body.tags;
 
-    // Return the updated post as a JSON response
+    // Return updated object (in JSON)
     res.json(post);
 
-    // Log the updated postsData to the console for debugging purposes
+    // DEBUG: updated postsData
     console.log(postsData);
 };
 
 // Modify
 function modify(req, res) {
-    // Filter by id
+
+    // Filter by ID key in postsData
     const id = parseInt(req.params.id);
     const post = postsData.find(post => post.id === id);
 
-    // If no element found by id
+    // If no object in ID position
     if (!post) {
         // Error 404
         res.status(404);
@@ -113,27 +114,27 @@ function modify(req, res) {
         });
     }
 
-    // Modify only post data fields given
+    // Modify only object data fields given
     req.body.title ? post.title = req.body.title : post.title = post.title;
     req.body.content ? post.content = req.body.content : post.content = post.content;
     req.body.image ? post.image = req.body.image : post.image = post.image;
     req.body.tag ? post.tag = req.body.title : post.title = post.title;
 
-    // Console log to check new data_post
-    console.log(postsData);
-
-    // Send new modified post json
+    // Return modified object (in JSON)
     res.json(postsData[id - 1]);
+
+    // DEBUG: updated postsData
+    console.log(postsData);
 };
 
 // Destroy function
 function destroy(req, res) {
 
-    // Destroy by id
+    // Filter by ID key in postsData
     const id = parseInt(req.params.id);
     const post = postsData.find(post => post.id === id);
 
-    // If no element found by id
+    // If no object in ID position
     if (!post) {
         // Error 404
         res.status(404);
@@ -143,11 +144,13 @@ function destroy(req, res) {
         });
     }
 
-    // OR delete post
+    // OR delete object in ID position
     postsData.splice(postsData.indexOf(post), 1);
-    // Send affirmative status
+
+    // Send 204 status
     res.sendStatus(204);
-    // Console log with updated data
+
+    // DEBUG: updated postsData
     console.log(postsData);
 };
 
