@@ -4,6 +4,19 @@ const postsData = require("../data/data_posts");
 // Function for posts routing behaviour
 // Index function
 function index(req, res) {
+
+    // If no element found
+    if (postsData.length === 0) {
+
+        // Error 404
+        return res.status(404).json({
+            error: "Not found",
+            message: "Post not found"
+        });
+
+    }
+
+    // Return data if found
     return res.json(postsData);
 };
 
