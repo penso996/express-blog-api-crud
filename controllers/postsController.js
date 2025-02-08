@@ -97,7 +97,7 @@ function update(req, res) {
     console.log(postsData);
 };
 
-// Modify function
+// Modify
 function modify(req, res) {
     // Filter by id
     const id = parseInt(req.params.id);
