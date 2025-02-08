@@ -3,7 +3,7 @@ const postsData = require("../data/data_posts");
 
 // Function for posts routing behaviour
 // Index function
-function index(res) {
+function index(_, res) {
 
     // If no element found
     if (postsData.length === 0) {
@@ -22,11 +22,11 @@ function index(res) {
 // Show function
 function show(req, res) {
 
-    // Filter by id
+    // Filter by ID
     const id = parseInt(req.params.id);
     const post = postsData.find(post => post.id === id);
 
-    // If no element found by id
+    // If no element found by ID
     if (!post) {
         // Error 404
         return res.status(404).json({
@@ -35,7 +35,7 @@ function show(req, res) {
         });
     }
 
-    // OR return post in json format
+    // OR return single post in json format
     res.json(post);
 };
 
