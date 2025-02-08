@@ -118,7 +118,7 @@ function modify(req, res) {
     req.body.title ? post.title = req.body.title : post.title = post.title;
     req.body.content ? post.content = req.body.content : post.content = post.content;
     req.body.image ? post.image = req.body.image : post.image = post.image;
-    req.body.tags ? post.tags = req.body.tags : post.title = post.title;
+    req.body.tags ? post.tags = req.body.tags : post.tags = post.tags;
 
     // Return modified object (in JSON)
     res.json(postsData[id - 1]);
