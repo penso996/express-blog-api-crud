@@ -3,7 +3,7 @@ const postsData = require("../data/data_posts");
 
 // Function for posts routing behaviour
 // Index function
-function index(req, res) {
+function index(res) {
 
     // If no element found
     if (postsData.length === 0) {
