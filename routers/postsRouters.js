@@ -1,4 +1,4 @@
-// Calling express for routing
+// Importing express for routing
 const express = require("express");
 const postsRouter = express.Router();
 
