@@ -14,7 +14,16 @@ function index(req, res) {
         );
     }
 
-    // Return filtered postsData, could be filtered or not
+    // If filteredPostsData is empty
+    if (filteredPostsData.length === 0) {
+        // Error 404
+        return res.status(404).json({
+            error: "Not found",
+            message: "Post not found"
+        });
+    }
+
+    // OR return filteredPostsData (filtered or unfiltered)
     res.json(filteredPostsData);
 };
 
