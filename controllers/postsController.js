@@ -1,7 +1,5 @@
 // Importing data
 const postsData = require("../data/data_posts");
-// Importing middleware to handle 404
-const notFound = require("../middlewares/notFound");
 
 // Function for posts (objects) routing behaviour
 // Index function
@@ -18,7 +16,10 @@ function index(req, res) {
     // If filteredPostsData is empty
     if (filteredPostsData.length === 0) {
         // Error 404
-        return notFound(req, res);
+        return res.status(404).json({
+            error: "Not found",
+            message: "Post not found"
+        });
     }
 
     // OR return filteredPostsData (filtered or unfiltered)
@@ -35,7 +36,10 @@ function show(req, res) {
     // If no object in ID position in postsData
     if (!post) {
         // Error 404
-        return notFound(req, res);
+        return res.status(404).json({
+            error: "Not found",
+            message: "Post not found"
+        });
     }
 
     // OR return object found in that position in postsData (in JSON)
@@ -80,7 +84,10 @@ function update(req, res) {
     // If no object in ID position
     if (!post) {
         // Error 404
-        return notFound(req, res);
+        return res.status(404).json({
+            error: "Not found",
+            message: "Post not found"
+        });
     }
 
     // If object is found, modify object's properties with data from the request body
@@ -106,7 +113,10 @@ function modify(req, res) {
     // If no object in ID position
     if (!post) {
         // Error 404
-        return notFound(req, res);
+        return res.status(404).json({
+            error: "Not found",
+            message: "Post not found"
+        });
     }
 
     // Modify only object data fields given
@@ -132,7 +142,7 @@ function destroy(req, res) {
     // If no object in ID position
     if (!post) {
         // Error 404
-        return notFound(req, res);
+        return postNotFound(req, res, next);
     }
 
     // OR delete object in ID position
