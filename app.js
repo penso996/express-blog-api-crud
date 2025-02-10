@@ -9,6 +9,11 @@ app.use(express.static("public"));
 // Defined middleware to parse JSON request bodies
 app.use(express.json());
 
+// Importing middleware to handle 404
+const notFound = require("./middlewares/notFound");
+// Defined middleware to handle 404
+app.use(notFound);
+
 // Defined home route
 app.get("/", (req, res) => {
     res.send("Homepage");
