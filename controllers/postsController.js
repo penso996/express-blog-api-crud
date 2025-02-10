@@ -10,8 +10,7 @@ function index(req, res) {
 
     // If query parameter "tag" is present
     if (req.query.tag) {
-        filteredPostsData = postsData.filter(post => post.tags.includes(req.query.tag)
-        );
+        filteredPostsData = postsData.filter(post => post.tags.includes(req.query.tag));
     }
 
     // If filteredPostsData is empty
