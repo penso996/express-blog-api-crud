@@ -106,7 +106,7 @@ function modify(req, res) {
     // If no object in ID position
     if (!post) {
         // Error 404
-        return notFound;
+        return notFound(req, res);
     }
 
     // Modify only object data fields given
@@ -116,7 +116,7 @@ function modify(req, res) {
     req.body.tags ? post.tags = req.body.tags : post.tags = post.tags;
 
     // Send 200 status and modified object (in JSON)
-    res.status(200).json(postsData[id - 1]);
+    res.status(200).json(post);
 
     // DEBUG: updated postsData
     console.log(postsData);
