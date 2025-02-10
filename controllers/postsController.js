@@ -3,19 +3,19 @@ const postsData = require("../data/data_posts");
 
 // Function for posts (objects) routing behaviour
 // Index function
-function index(_, res) {    // No req needed
+function index(req, res) {
 
-    // If postsData is empty
-    if (postsData.length === 0) {
-        // Error 404
-        return res.status(404).json({
-            error: "Not found",
-            message: "Post not found"
-        });
+    // Create a variable to store filtered postsData
+    let filteredPostsData = postsData;
+
+    // If query parameter "tag" is present
+    if (req.query.tag) {
+        filteredPostsData = postsData.filter(post => post.tags.includes(req.query.tag)
+        );
     }
 
-    // OR return all objects in postsData (in JSON)
-    return res.json(postsData);
+    // Return filtered postsData, could be filtered or not
+    res.json(filteredPostsData);
 };
 
 // Show function
