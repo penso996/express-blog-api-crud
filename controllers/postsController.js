@@ -23,7 +23,7 @@ function index(req, res) {
 
     // OR return filteredPostsData (filtered or unfiltered)
     res.json(filteredPostsData);
-};
+}
 
 // Show function
 function show(req, res) {
@@ -40,7 +40,7 @@ function show(req, res) {
 
     // OR return object found in that position in postsData (in JSON)
     res.json(post);
-};
+}
 
 // Store function
 function store(req, res) {
@@ -68,7 +68,7 @@ function store(req, res) {
 
     // DEBUG: updated postsData
     console.log(postsData);
-};
+}
 
 // Update function
 function update(req, res) {
@@ -94,7 +94,7 @@ function update(req, res) {
 
     // DEBUG: updated postsData
     console.log(postsData);
-};
+}
 
 // Modify
 function modify(req, res) {
@@ -120,7 +120,7 @@ function modify(req, res) {
 
     // DEBUG: updated postsData
     console.log(postsData);
-};
+}
 
 // Destroy function
 function destroy(req, res) {
@@ -143,8 +143,8 @@ function destroy(req, res) {
 
     // DEBUG: updated postsData
     console.log(postsData);
-};
+}
 
 
 // Export controller module
-module.exports = { index, show, store, update, modify, destroy }
+module.exports = { index, show, store, update, modify, destroy };
