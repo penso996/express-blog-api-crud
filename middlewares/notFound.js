@@ -7,4 +7,5 @@ function notFound(req, res) {
     });
 };
 
+// Export module for 404 behaviour
 module.exports = notFound;
