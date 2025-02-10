@@ -3,9 +3,6 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-// Importing main posts route
-const postsRouter = require("./routers/postsRouters.js");
-
 // Defined middleware to serve static files from the "public" folder
 app.use(express.static("public"));
 
@@ -17,6 +14,8 @@ app.get("/", (req, res) => {
     res.send("Homepage");
 });
 
+// Importing main posts route
+const postsRouter = require("./routers/postsRouters.js");
 // Defined main posts route
 app.use("/posts", postsRouter);
 
@@ -29,6 +28,7 @@ app.use(notFound);
 const errorsHandler = require("./middlewares/errorsHandler.js");
 // Defined 500 error handling behaviour
 app.use(errorsHandler);
+
 
 // Starting server on specified port
 app.listen(port, () => {
