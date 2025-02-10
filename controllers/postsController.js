@@ -9,7 +9,7 @@ function index(req, res) {
     let filteredPostsData = postsData;
 
     // If query parameter "tag" is present
-    if (req.query.tag) {
+    if (req.query.tag) {        // Defined query word "tag"
         filteredPostsData = postsData.filter(post => post.tags.includes(req.query.tag));
     }
 
@@ -77,10 +77,8 @@ function store(req, res) {
 // Update function
 function update(req, res) {
 
-    // Retrieve ID key in postsData from the request parameters
+    // Filter by ID key in postsData
     const id = parseInt(req.params.id);
-
-    // Find ID key in postsData
     const post = postsData.find(post => post.id === id);
 
     // If no object in ID position
@@ -98,8 +96,8 @@ function update(req, res) {
     post.image = req.body.image;
     post.tags = req.body.tags;
 
-    // Return updated object (in JSON)
-    res.json(post);
+    // Send 200 status and updated object (in JSON)
+    res.status(200).json(post);
 
     // DEBUG: updated postsData
     console.log(postsData);
@@ -128,8 +126,8 @@ function modify(req, res) {
     req.body.image ? post.image = req.body.image : post.image = post.image;
     req.body.tags ? post.tags = req.body.tags : post.tags = post.tags;
 
-    // Return modified object (in JSON)
-    res.json(postsData[id - 1]);
+    // Send 200 status and modified object (in JSON)
+    res.status(200).json(postsData[id - 1]);
 
     // DEBUG: updated postsData
     console.log(postsData);
