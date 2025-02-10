@@ -1,5 +1,5 @@
 // Defined behaviour for 404
-function notFound(req, res, next) {
+function notFound(req, res) {
     res.status(404);
     res.json({
         error: "Not Found",
