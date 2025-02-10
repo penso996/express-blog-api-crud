@@ -29,6 +29,8 @@ function index(req, res) {
 // Show function
 function show(req, res) {
 
+    okok;
+
     // Filter by ID key in postsData
     const id = parseInt(req.params.id);
     const post = postsData.find(post => post.id === id);
