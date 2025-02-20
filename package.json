@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/penso996/express-blog-api-crud#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.2"
   }
 }
