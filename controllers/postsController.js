@@ -144,7 +144,10 @@ function destroy(req, res) {
     // If no object in ID position
     if (!post) {
         // Error 404
-        return postNotFound(req, res, next);
+        return res.status(404).json({
+            error: "Not found",
+            message: "Post not found"
+        });
     }
 
     // OR delete object in ID position
