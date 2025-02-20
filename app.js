@@ -2,6 +2,10 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const cors = require("cors");
+
+// Defined middleware to enable CORS only for the frontend 
+app.use(cors({ origin: ["http://localhost:5173/"] }));
 
 // Defined middleware to serve static files from the "public" folder
 app.use(express.static("public"));
